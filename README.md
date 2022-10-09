@@ -19,4 +19,7 @@ flask 로컬 서버 구현을 통해 검색 결과를 보여주고, 이를 csv �
 - [ ] (웹 사이트) csv 파일 저장 기능
 
 <br>
-
+<pre>
+https://mywork--gingerk309.repl.co/
+위의 사이트처럼 구현될 예정입니다.
+</pre>

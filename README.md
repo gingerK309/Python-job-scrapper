@@ -22,7 +22,7 @@ flask 로컬 서버 구현을 통해 검색 결과를 보여주고, 이를 csv �
 
 ## 💡결과 샘플
 - https://mywork--gingerk309.repl.co/
-해당 사이트처럼 구현할 예정입니다.
-- 위의 사이트는 https://nomadcoders.co의 파이썬
+<br>해당 사이트처럼 구현할 예정입니다.
+- 위의 사이트는 https://nomadcoders.co 의 파이썬
 챌린지에 참여해 졸업 과제로 제작한 것입니다.
 

@@ -21,15 +21,14 @@ def saramin_find_region():
         print('사이트 접근 거부')
     return code_dict
 
-def saramin_search_region(region=None):
+def saramin_search_region(region):
     try:
         r_list = saramin_find_region()
         if isinstance(region, list):
-            if region is not (None or ''):
-                rs = []
-                for r in region:
-                    rs.append(r_list[r])
-                region = ''.join(r+',' for r in rs)
+            rs = []
+            for r in region:
+                rs.append(r_list[r])
+            region = ''.join(r+',' for r in rs)
             return region
     except:
         pass
@@ -86,11 +85,16 @@ def saramin_extract_jobs(search, region):
                         date = job_list.find('span','date').string
                         conditions = job_list.find_all('div','job_condition')
                         job_conditions = []
+                        
                         for c in conditions:
+                            detail_location = ''
                             career = c.find('span').find_next('span').string
                             education = career.find_next('span').string
                             job_conditions.append(career)
                             job_conditions.append(education)
+                            location = c.find_all('a',target='_blank')
+                            for loc in location:
+                                detail_location += loc.string +' '
                         sectors = job_list.find_all('div','job_sector')
                         sector = ''
                         for s in sectors:
@@ -99,6 +103,7 @@ def saramin_extract_jobs(search, region):
                             '공고': title,
                             '회사명': corp_data,
                             '공고 링크':link,
+                            '위치': detail_location,
                             '모집 기한': date,
                             '자격 조건': job_conditions,
                             '기술 스택': sector

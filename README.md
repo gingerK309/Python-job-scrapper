@@ -29,3 +29,6 @@ flask 로컬 서버 구현을 통해 검색 결과를 보여주고, 이를 csv �
 ## 💻프로젝트 결과 
 - https://Python-job-scrapper.gingerk309.repl.co
 
+<img>![ezgif-2-2a58b3913d](https://user-images.githubusercontent.com/49302989/195383406-63b7d4b9-8457-487a-8ca4-c409e6a73f44.gif)</img>
+
+

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    <title>검색 결과</title>
+ <!-- Bootstrap core CSS -->
+ <link href="../static/bootstrap.min.css" rel="stylesheet">
+
+ <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+ <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+ <!-- Custom styles for this template -->
+ <link href="../static/jumbotron.css" rel="stylesheet">
+
+ <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+ <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+ <script src="/assets/js/ie-emulation-modes-warning.js"></script>
+
+ <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+ <!--[if lt IE 9]>
+   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+ <![endif]-->
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{{url_for('main.home')}}">JOB scraper</a>
+          </div>
+        </div>
+      </nav>
+<div class="jumbotron">
+    <div class="container text-center">
+        <h2><b></b>스크랩 완료!</b></h2>
+        <p class="lead">검색 결과의 저장을 원하시면, 아래의 Save 버튼을 눌러주세요.</p>
+        <form method='get' action='/export'> <p><a target='_blank' class="btn btn-lg btn-success" href="/export?region={{region}}&keyword={{keyword}}" role="button" type='submit' >Save</a></p>
+        </form>
+      </div>
+    </div>
+<div class="container">
+<h3 class="sub-header text-info">{{keyword}} 검색 결과, 총 {{nums}}개</h3>
+<div class='text-center table-responsive'>    
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class='text-center'>제목</th>
+                  <th class='text-center'>회사명</th>
+                  <th class='text-center'>공고</th>
+                  <th class='text-center'>위치</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for job in jobs %}
+                <tr>
+                  <td>{{job.title}}</td>
+                  <td>{{job.corp}}</td>
+                  <td><a href ="{{job.link}}" target='_blank'>apply</a></td>
+                  <td>{{job.location}}</td>
+                </tr>
+              </tbody>
+                {% endfor %}
+            </table>
+          </div>
+
+      <footer class="footer">
+        <p>&copy; 2022 Bootstrap, gingerk309.</p>
+      </footer>
+    </div>
+   <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../static/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

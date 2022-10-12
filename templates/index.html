@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    <title>JOB scraper</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/jumbotron.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+   
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{url_for('main.home')}}">JOB scraper</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <form action="/search" class="navbar-form navbar-right">
+              <div class="form-group" >
+                <input type="text" placeholder="지역 입력" name="region" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder="검색어 입력" name="keyword"  class="form-control">
+              </div>
+              <button type="submit" class="btn btn-success">Search</button>
+              
+            </form>
+          </div><!--/.navbar-collapse -->
+        </div>
+      </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h2 class="text-center"><b>어서오세요, JOB scraper 입니다 :)</b></h2>
+        <br>
+        <div class="row text-center">
+            <div class="col-sm-4">
+              <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h4>검색 가능한 지역</h4>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">
+                    최대 5개의 지역을 입력할 수 있습니다.
+                     </h5>
+                  <p class="card-text text-primary" style="font-size:15px">
+                    서울 
+                    경기 
+                    인천 
+                    부산 
+                    대구 
+                    광주 
+                    대전 
+                    울산 
+                    세종
+                    <br>
+                    강원 
+                    경남 
+                    경북 
+                    전남 
+                    전북 
+                    충남 
+                    충북 
+                    제주 
+                    전국
+                </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h4>검색할 때 버퍼링이 있어요</h4>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">오작동이 아닙니다!</h5>
+                  <p class="card-text" style="font-size:15px">검색 결과를 스크래핑 하는데 시간이 소요됩니다.<br>
+                잠시만 기다려주세요.
+                </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h4>csv 파일 저장 기능</h4>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">검색 결과를 csv 파일로 저장할 수 있습니다.</h5>
+                  <p class="card-text" style="font-size:15px">
+                    검색 결과를 다운로드 받아보세요!<br>
+                    엑셀로 조회할 수 있습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+              <h3 class="text-primary">사람인</h3>
+              <p>내일이 더 즐거운 사람인 | 구인구직, 채용, 취업플랫폼 </p>
+              <p class="text-muted">내일이 더 즐거운 사람인에서 AI채용추천, 기업정보, 연봉정보, 면접후기 등 취업, 채용에 꼭 필요한 서비스를 만나보세요.</p>
+              <p><a class="btn btn-default" href="https://www.saramin.co.kr/" role="button">View details &raquo;</a></p>
+            </div>
+            <div class="col-md-6">
+              <h3 class="text-primary">잡코리아</h3>
+              <p>대한민국 대표 취업플랫폼 잡코리아 - 구인구직, 채용 정보</p>
+              <p class="text-muted">대한민국 대표 취업플랫폼 잡코리아에서 실시간 채용정보, 맞춤채용추천, 연봉, 기업정보, 합자소 등 취업에 필요한 사이트 정보를 확인하세요.</p>
+              <p><a class="btn btn-default" href="https://www.jobkorea.co.kr/" role="button">View details &raquo;</a></p>
+           </div>        
+      </div>
+      
+      <hr>
+      <footer>
+        <p>&copy; 2022 Bootstrap, gingerk309.</p>
+      </footer>
+      </div>
+
+      
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../static/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

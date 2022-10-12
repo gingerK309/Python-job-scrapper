@@ -1,7 +1,7 @@
 from requests import get
 from bs4 import BeautifulSoup
 from urllib.request import urlopen,Request
-import traceback
+from urllib.parse import quote
 
 def saramin_find_region():
     code_dict = {}
@@ -57,12 +57,13 @@ def find_pages(search, region):
                 pass
         
 def saramin_extract_jobs(search, region):
-    pages = find_pages(search, region)
+    search = quote(''.join(s+',' for s in search))
+    jobs = []
+    pages =find_pages(search, region)
     region = saramin_search_region(region)
     base_url = f'https://www.saramin.co.kr/zf_user/search?&searchword={search}'
-    jobs = []
     for page in range(1,pages+2):
-        print(f'{page}페이지 추출중...')
+        print(f'사람인 {page}페이지 추출중...')
         url = f'{base_url}&searchword={search}&loc_mcd={region}&recruitPageCount=100&recruitPage={page}'
         header={'User-Agent':'Mozilla/5.0'}
         req = Request(url, headers = header, method ='POST')
@@ -70,49 +71,44 @@ def saramin_extract_jobs(search, region):
             if res.status != 200:
                 print(res)
             else:
-                try:
                     html = res.read().decode()
                     soup = BeautifulSoup(html,'html.parser')
-                    search_info = soup.find_all('div','header')[0]
-                    search_info = search_info.find('h2').string + ' ' + search_info.find('span').string
                     job_lists = soup.find_all('div','item_recruit')
                     for job_list in job_lists:
-                        corp_data = job_list.find('a','track_event data_layer').string.replace('                            ','').replace('\n','').replace(
-                        '                        ','')
-                        job_list = job_list.find('div','area_job')
-                        title = job_list.find('span').string
-                        link = 'https://www.saramin.co.kr'+job_list.find('a')['href'].replace('/relay','')
-                        date = job_list.find('span','date').string
-                        conditions = job_list.find_all('div','job_condition')
-                        job_conditions = []
-                        
-                        for c in conditions:
-                            detail_location = ''
-                            career = c.find('span').find_next('span').string
-                            education = career.find_next('span').string
-                            job_conditions.append(career)
-                            job_conditions.append(education)
-                            location = c.find_all('a',target='_blank')
-                            for loc in location:
-                                detail_location += loc.string +' '
-                        sectors = job_list.find_all('div','job_sector')
-                        sector = ''
-                        for s in sectors:
-                            sector = s.get_text().split('외')[0].lstrip('\n').split(',')
-                        job_dict = {
-                            '공고': title,
-                            '회사명': corp_data,
-                            '공고 링크':link,
-                            '위치': detail_location,
-                            '모집 기한': date,
-                            '자격 조건': job_conditions,
-                            '기술 스택': sector
-                        }
-                        jobs.append(job_dict)
-                    print('완료')   
-                except Exception as e:
-                    trace_back = traceback.format_exc()
-                    message = str(e)+ "\n" + str(trace_back)
-                    print('에러 발생:',message)
+                        if job_lists is None:
+                            break
+                        else:
+                            corp_data = job_list.find('a','track_event data_layer').string.replace('                            ','').replace('\n','').replace(
+                            '                        ','')
+                            job_list = job_list.find('div','area_job')
+                            title = job_list.find('span').string
+                            link = 'https://www.saramin.co.kr'+job_list.find('a')['href'].replace('/relay','')
+                            date = job_list.find('span','date').string
+                            conditions = job_list.find_all('div','job_condition')
+                            job_conditions = []
+                            for c in conditions:
+                                detail_location = ''
+                                career = c.find('span').find_next('span').string
+                                education = career.find_next('span').string
+                                job_conditions.append(career)
+                                job_conditions.append(education)
+                                location = c.find_all('a',target='_blank')
+                                for loc in location:
+                                    detail_location += loc.string +' '
+                            sectors = job_list.find_all('div','job_sector')
+                            sector = ''
+                            for s in sectors:
+                                sector = s.get_text().split('외')[0].lstrip('\n').split(',')
+                            job_dict = {
+                                'title': title,
+                                'corp': corp_data,
+                                'link':link,
+                                'location': detail_location,
+                                'dead_line': date,
+                                'conditions': job_conditions,
+                                'tech_stacks': sector
+                            }
+                            jobs.append(job_dict)
+        print('완료')
     return jobs
 

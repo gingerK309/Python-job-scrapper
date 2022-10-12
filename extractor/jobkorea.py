@@ -1,13 +1,11 @@
-import json,os
+import json
 from bs4 import BeautifulSoup
 from requests import get
 from urllib.parse import quote
 
 def jobkorea_find_region():
     json_data = {}
-    current_path = os.getcwd()
-    file_path  = current_path + '/extractor'
-    with open(f'{file_path}/jobkorea_region_code.json','r',encoding='utf-8') as f:
+    with open('jobkorea_region_code.json','r',encoding='utf-8') as f:
         json_data = json.load(f)
         return json_data
 

@@ -72,5 +72,6 @@ def jobkorea_extract_jobs(search,region):
                             jobs.append(job_dict)
                 print('완료')
             except AttributeError:
-                return jobs
+                print('AttributeError')
+                continue
     return jobs

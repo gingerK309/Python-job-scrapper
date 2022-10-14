@@ -28,7 +28,7 @@ def find_pages(search,region):
         print("페이지가 응답하지 않음")
     else:
         soup = BeautifulSoup(request.text, "html.parser")
-        count = int(soup.find('strong','dev_tot').string)
+        count = int(soup.find('strong','dev_tot').string.replace(',',''))
         pages = count//20 + 1
     return pages
     

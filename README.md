@@ -28,6 +28,10 @@ flask 로컬 서버 구현을 통해 검색 결과를 보여주고, 이를 csv �
 
 ## 💻프로젝트 결과 
 - https://Python-job-scrapper.gingerk309.repl.co
+### ※ 주의!
+검색 버튼을 누르는 순간부터 데이터를 스크래핑 해옵니다. <br> 오래 걸리는게 정상이니 검색어 입력 후에 버튼을 연타하지 말고 결과창이 나올 때 까지 잠시만 기다려주세요.
+
+
 
 <img>![ezgif-2-2a58b3913d](https://user-images.githubusercontent.com/49302989/195383406-63b7d4b9-8457-487a-8ca4-c409e6a73f44.gif)</img>
 

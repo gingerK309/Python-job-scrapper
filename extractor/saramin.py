@@ -35,7 +35,7 @@ def saramin_search_region(region):
 
 def find_pages(search, region):
     region = saramin_search_region(region)
-    base_url = f'https://www.saramin.co.kr/zf_user/search?&searchword={search}'
+    base_url = f'https://www.saramin.co.kr/zf_user/search?'
     url = f'{base_url}&searchword={search}&loc_mcd={region}&recruitPageCount=100'
     header={'User-Agent':'Mozilla/5.0'}
     req = Request(url, headers = header, method ='POST')

@@ -78,8 +78,7 @@ def saramin_extract_jobs(search, region):
                         if job_lists is None:
                             break
                         else:
-                            corp_data = job_list.find('a','track_event data_layer').string.replace('                            ','').replace('\n','').replace(
-                            '                        ','')
+                            corp_data = job_list.find('a','track_event data_layer').string.strip()
                             job_list = job_list.find('div','area_job')
                             title = job_list.find('span').string
                             link = 'https://www.saramin.co.kr'+job_list.find('a')['href'].replace('/relay','')

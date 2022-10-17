@@ -61,7 +61,7 @@ def saramin_extract_jobs(search, region):
     jobs = []
     pages =find_pages(search, region)
     region = saramin_search_region(region)
-    base_url = f'https://www.saramin.co.kr/zf_user/search?&searchword={search}'
+    base_url = f'https://www.saramin.co.kr/zf_user/search?'
     for page in range(1,pages+2):
         print(f'사람인 {page}페이지 추출중...')
         url = f'{base_url}&searchword={search}&loc_mcd={region}&recruitPageCount=100&recruitPage={page}'

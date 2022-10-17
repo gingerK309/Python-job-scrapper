@@ -89,9 +89,10 @@ def saramin_extract_jobs(search, region):
                                 detail_location = ''
                                 career = c.find('span').find_next('span').string
                                 education = career.find_next('span').string
+                                contract = education.find_next('span').string
                                 job_conditions.append(career)
                                 job_conditions.append(education)
-                                location = c.find_all('a',target='_blank')
+                                job_conditions.append(contract)
                                 for loc in location:
                                     detail_location += loc.string +' '
                             sectors = job_list.find_all('div','job_sector')

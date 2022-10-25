@@ -47,8 +47,7 @@ def find_pages(search, region):
                 page_cnt = 0
                 html = res.read().decode()
                 soup = BeautifulSoup(html,'html.parser')
-                nums = soup.find_all('div','header')[0]
-                count = nums.find('span').string.replace('총','').replace('건','').replace(',','').replace(' ','')
+                count = soup.find('span','cnt_result').string.replace('총','').replace('건','').replace(',','').replace(' ','')
                 page_cnt = int(count)//100
                 if page_cnt == 0:
                     page_cnt +=1

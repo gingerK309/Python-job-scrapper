@@ -48,9 +48,7 @@ def find_pages(search, region):
                 html = res.read().decode()
                 soup = BeautifulSoup(html,'html.parser')
                 count = soup.find('span','cnt_result').string.replace('총','').replace('건','').replace(',','').replace(' ','')
-                page_cnt = int(count)//100
-                if page_cnt == 0:
-                    page_cnt +=1
+                page_cnt = int(count)//100 + 1
                 return page_cnt
             except:
                 pass
@@ -61,7 +59,7 @@ def saramin_extract_jobs(search, region):
     pages =find_pages(search, region)
     region = saramin_search_region(region)
     base_url = f'https://www.saramin.co.kr/zf_user/search?'
-    for page in range(1,pages+2):
+    for page in range(1,pages+1):
         print(f'사람인 {page}페이지 추출중...')
         url = f'{base_url}&searchword={search}&loc_mcd={region}&recruitPageCount=100&recruitPage={page}'
         header={'User-Agent':'Mozilla/5.0'}
